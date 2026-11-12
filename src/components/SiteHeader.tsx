@@ -15,6 +15,7 @@ export function SiteHeader() {
 
   return (
     <header
+      suppressHydrationWarning
       className={`fixed inset-x-0 top-0 z-40 transition-[background,border-color,backdrop-filter] duration-300 ${
         scrolled
           ? "border-b border-line bg-[color-mix(in_oklab,var(--paper)_82%,transparent)] backdrop-blur-xl"

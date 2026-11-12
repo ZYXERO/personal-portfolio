@@ -29,7 +29,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(215,235,231,0.45),transparent_42%)]" />
       </div>
 
-      <div className="section-pad section-max relative flex min-h-[calc(100svh-var(--header-h))] flex-col justify-end pb-16 pt-20 md:pb-24">
+      <div className="section-pad section-max relative flex min-h-[calc(100svh-var(--header-h))] flex-col justify-end pb-14 pt-24 md:justify-center md:pb-20 md:pt-[calc(var(--header-h)+2rem)]">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

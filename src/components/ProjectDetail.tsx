@@ -150,19 +150,6 @@ export function ProjectDetail({ project, onClose }: Props) {
               <div className="grid gap-8 md:grid-cols-[1.4fr_0.8fr]">
                 <div>
                   <p className="text-[1.05rem] leading-8 text-ink-soft">{project.description}</p>
-                  {!recording ? (
-                    <p className="mt-5 text-sm leading-6 text-muted">
-                      Add a demo recording by dropping an mp4 into{" "}
-                      <code className="mono rounded bg-fog px-1.5 py-0.5 text-[0.85em]">
-                        public/projects/{project.id}/
-                      </code>{" "}
-                      or setting a YouTube/Vimeo URL in{" "}
-                      <code className="mono rounded bg-fog px-1.5 py-0.5 text-[0.85em]">
-                        src/data/projects.ts
-                      </code>
-                      .
-                    </p>
-                  ) : null}
                 </div>
 
                 <div className="space-y-6">
