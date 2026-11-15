@@ -21,6 +21,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kaushikselvakumar.com"),
   title: {
     default: "Kaushik Selvakumar — Portfolio",
     template: "%s · Kaushik Selvakumar",
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Kaushik Selvakumar — Computer Engineering student at USF building AI, cloud, and full-stack software. Selected projects with demos, screenshots, and recordings.",
   openGraph: {
+    url: "https://kaushikselvakumar.com",
     title: "Kaushik Selvakumar — Portfolio",
     description:
       "AI, cloud, and full-stack work with demos, screenshots, and project recordings.",
