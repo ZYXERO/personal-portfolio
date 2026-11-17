@@ -3,27 +3,40 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { projects } from "@/data/projects";
-import type { Project } from "@/lib/types";
 import { ProjectDetail } from "@/components/ProjectDetail";
+import { SectionIntro } from "@/components/SectionIntro";
+import type { Project } from "@/lib/types";
 
-export function ProjectList() {
+type Props = {
+  projects: Project[];
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  showMoreHref?: string;
+  showMoreLabel?: string;
+};
+
+export function ProjectList({
+  projects,
+  eyebrow = "Selected work",
+  title = "Projects with demos, screenshots, and recordings.",
+  description = "Open any project for media, stack details, GitHub, and live demo links.",
+  showMoreHref,
+  showMoreLabel = "Browse all projects",
+}: Props) {
   const [active, setActive] = useState<Project | null>(null);
   const reduce = useReducedMotion();
 
   return (
-    <section id="work" className="section-pad scroll-mt-24 py-24 md:py-32">
+    <section className="section-pad py-24 md:py-28">
       <div className="section-max">
-        <div className="mb-14 max-w-2xl">
-          <p className="eyebrow mb-4">Selected work</p>
-          <h2 className="display text-4xl font-semibold tracking-[-0.05em] md:text-5xl">
-            Projects with room for demos, screenshots, and recordings.
-          </h2>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-muted">
-            Open any project for media, stack details, GitHub, and live demo links. Drop new assets into
-            the project folders anytime.
-          </p>
-        </div>
+        <SectionIntro
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          href={showMoreHref}
+          cta={showMoreLabel}
+        />
 
         <ul className="divide-y divide-line border-y border-line">
           {projects.map((project, index) => (
@@ -31,8 +44,8 @@ export function ProjectList() {
               key={project.id}
               initial={reduce ? false : { opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.55, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
             >
               <button
                 type="button"
@@ -45,7 +58,7 @@ export function ProjectList() {
                     <span aria-hidden>·</span>
                     <span>{project.role}</span>
                   </div>
-                  <h3 className="display mt-3 text-3xl font-semibold transition-colors group-hover:text-accent md:text-[2.15rem]">
+                  <h3 className="display mt-3 text-3xl font-semibold transition-colors group-hover:text-accent md:text-[2.05rem]">
                     {project.title}
                   </h3>
                   <p className="mt-4 max-w-xl text-[1.05rem] leading-8 text-ink-soft">

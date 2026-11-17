@@ -1,13 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { site, socials } from "@/data/site";
 
-export function Contact() {
+export function ContactPreview() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="contact" className="section-pad scroll-mt-24 pb-24 pt-8 md:pb-32">
+    <section className="section-pad pb-24 pt-8 md:pb-32">
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -20,13 +21,16 @@ export function Contact() {
           Let’s talk about roles, internships, or building something useful.
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-ink-soft">
-          {site.availability}. The fastest way to reach me is email.
+          {site.availability}. Prefer email, or jump to the full contact page.
         </p>
-
         <div className="mt-10 flex flex-wrap gap-3">
           <a href={`mailto:${site.email}`} className="btn btn-primary">
             {site.email}
           </a>
+          <Link href="/contact" className="btn btn-ghost">
+            Contact page
+            <span aria-hidden>→</span>
+          </Link>
           {socials
             .filter((item) => item.label !== "Email")
             .map((item) => (

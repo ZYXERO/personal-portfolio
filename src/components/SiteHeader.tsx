@@ -1,9 +1,12 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, site, socials } from "@/data/site";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -22,35 +25,47 @@ export function SiteHeader() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="section-pad section-max flex h-[var(--header-h)] items-center justify-between gap-6">
-        <a href="#top" className="display text-[1.05rem] font-semibold tracking-[-0.05em]">
-          {site.shortName}
-          <span className="text-accent">.</span>
-        </a>
+      <div className="section-pad section-max flex min-h-[var(--header-h)] flex-col justify-center gap-2 py-3 md:flex-row md:items-center md:justify-between md:gap-6 md:py-0">
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/" className="display text-[1.05rem] font-semibold tracking-[-0.05em]">
+            {site.shortName}
+            <span className="text-accent">.</span>
+          </Link>
+          <Link href="/contact" className="btn btn-primary text-sm md:hidden">
+            Contact
+          </Link>
+        </div>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-          {nav.map((item) => (
-            <a key={item.href} href={item.href} className="link-quiet text-sm">
-              {item.label}
-            </a>
-          ))}
+        <nav className="flex items-center gap-4 overflow-x-auto pb-1 text-sm md:gap-7 md:pb-0" aria-label="Primary">
+          {nav.map((item) => {
+            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`link-quiet shrink-0 ${active ? "text-accent" : ""}`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="flex items-center gap-4 text-sm">
+        <div className="hidden items-center gap-4 text-sm md:flex">
           {socials.slice(0, 2).map((item) => (
             <a
               key={item.label}
               href={item.href}
               target="_blank"
               rel="noreferrer"
-              className="link-quiet hidden sm:inline-flex"
+              className="link-quiet"
             >
               {item.label}
             </a>
           ))}
-          <a href="#contact" className="btn btn-primary text-sm">
+          <Link href="/contact" className="btn btn-primary text-sm">
             Contact
-          </a>
+          </Link>
         </div>
       </div>
     </header>
