@@ -114,7 +114,7 @@ export const resumes: ResumeFile[] = [
   },
   {
     id: "engineering",
-    label: "Computer Engineering Resume",
+    label: "Hardware Engineering Resume",
     description:
       "Hardware-leaning version with EDA tools, FPGA, manufacturing, and systems coursework.",
     href: "/resumes/kaushik-selvakumar-engineering.pdf",
